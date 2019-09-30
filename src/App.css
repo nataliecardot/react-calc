@@ -7,6 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.App {
-  text-align: center;
+.app {
+  display: flex;
 }
