@@ -9,13 +9,10 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /* Percentage better to use than 100vw because 100vw accounts scrollbar as part of viewport; adds a horizontal scrollbar */
-  /* width: 100%; */
 }
 
 .calc-wrapper {
   width: 400px;
-  /* height: 600px; */
 }
 
 .row {
