@@ -20,3 +20,24 @@ body {
   display: flex;
   width: 100%;
 }
+
+/* Small screens */
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .app {
+    align-items: flex-start;
+    padding: 0.7rem 0;
+    height: auto;
+  }
+
+  .calc-wrapper {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .app {
+    align-items: flex-start;
+    padding: 0.7rem 0;
+    height: auto;
+  }
+}
