@@ -9,11 +9,19 @@
   /* Causes all flex items to be same length, regardless of content. If one flex item has a flex of 1 and another has a flex of 2, the item with a flex of 1 will take up 1/3 the space of the one with a flex of 2 */
   flex: 1;
   /* Outline is outside of border */
-  outline: 1px solid #888;
+  border: 0.5px solid #888;
   cursor: pointer;
+}
+
+.button-wrapper:hover {
+  background-color: #ccced6;
 }
 
 .operator {
   background-color: #fe9241;
   color: #fff;
+}
+
+.operator:hover {
+  background-color: #f38530;
 }

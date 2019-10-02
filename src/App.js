@@ -1,16 +1,17 @@
-import React, { Component } from "react";
-import "./App.css";
-import { Button } from "./components/Button";
-import { Input } from "./components/Input";
-import { ClearButton } from "./components/ClearButton";
-import * as math from "mathjs";
+import React, { Component } from 'react';
+import './App.css';
+import { Button } from './components/Button';
+import { Input } from './components/Input';
+import { ClearButton } from './components/ClearButton';
+import * as math from 'mathjs';
+import { unregisterDecorator } from 'handlebars';
 
 class App extends Component {
   constructor(props) {
     /* Have to call super because extending component class */
     super(props);
     this.state = {
-      input: ""
+      input: ''
     };
   }
 
@@ -24,22 +25,38 @@ class App extends Component {
     this.setState({ input: math.evaluate(this.state.input) });
   };
 
+  // Using this so a middle dot can be used, which is perfectly vertically aligned, unlike period
+  handleDecimalPoint = () => {
+    this.setState({ input: this.state.input + '.' });
+  };
+
+  // Using this so a division symbol can be used
+  handleDivisionSymbol = () => {
+    this.setState({ input: this.state.input + '/' });
+  };
+
+  // Using this so a multiplication symbol can be used
+  handleMultiplicationSymbol = () => {
+    this.setState({ input: this.state.input + '*' });
+  };
+
   render() {
     return (
       <div className="app">
         <div className="calc-wrapper">
           <Input input={this.state.input}></Input>
           <div className="row">
+            {/* Multi-line edit with Ctrl + D */}
             <Button handleClick={this.addToInput}>7</Button>
             <Button handleClick={this.addToInput}>8</Button>
             <Button handleClick={this.addToInput}>9</Button>
-            <Button handleClick={this.addToInput}>/</Button>
+            <Button handleClick={() => this.handleDivisionSymbol()}>÷</Button>
           </div>
           <div className="row">
             <Button handleClick={this.addToInput}>4</Button>
             <Button handleClick={this.addToInput}>5</Button>
             <Button handleClick={this.addToInput}>6</Button>
-            <Button handleClick={this.addToInput}>*</Button>
+            <Button handleClick={() => this.handleMultiplicationSymbol()}>×</Button>
           </div>
           <div className="row">
             <Button handleClick={this.addToInput}>1</Button>
@@ -49,13 +66,13 @@ class App extends Component {
           </div>
           <div className="row">
             <Button handleClick={this.addToInput}>0</Button>
-            <Button handleClick={this.addToInput}>.</Button>
+            <Button handleClick={() => this.handleDecimalPoint()}>·</Button>
             <Button handleClick={() => this.handleEqualsSign()}>=</Button>
             <Button handleClick={this.addToInput}>+</Button>
           </div>
           <div className="row">
             {/* Inline functions create a new function on every render; potential performance hit */}
-            <ClearButton handleClear={() => this.setState({ input: "" })}>
+            <ClearButton handleClear={() => this.setState({ input: '' })}>
               Clear
             </ClearButton>
           </div>

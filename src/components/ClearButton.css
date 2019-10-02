@@ -8,6 +8,11 @@
   background-color: #e0e1e6;
   color: #000;
   flex: 1;
-  outline: 1px solid #888;
+  border: 0.5px solid #888;
+  border-radius: 0 0 5px 5px;
   cursor: pointer;
+}
+
+.clear-btn:hover {
+  background-color: #d2d2d3;
 }
