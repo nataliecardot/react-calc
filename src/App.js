@@ -40,6 +40,11 @@ class App extends Component {
     this.setState({ input: this.state.input + '*' });
   };
 
+  // Using this so a minus sign can be used instead of a hyphen
+  handleMinusSign = () => {
+    this.setState({ input: this.state.input + '-' });
+  };
+
   render() {
     return (
       <div className="app">
@@ -62,7 +67,7 @@ class App extends Component {
             <Button handleClick={this.addToInput}>1</Button>
             <Button handleClick={this.addToInput}>2</Button>
             <Button handleClick={this.addToInput}>3</Button>
-            <Button handleClick={this.addToInput}>−</Button>
+            <Button handleClick={() => this.handleMinusSign()}>−</Button>
           </div>
           <div className="row">
             <Button handleClick={this.addToInput}>0</Button>
