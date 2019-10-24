@@ -4,46 +4,53 @@ import { Button } from './components/Button';
 import { Input } from './components/Input';
 import { ClearButton } from './components/ClearButton';
 import * as math from 'mathjs';
-import { unregisterDecorator } from 'handlebars';
 
 class App extends Component {
   constructor(props) {
     /* Have to call super because extending component class */
     super(props);
     this.state = {
-      input: ''
+      input: '',
+      evaluated: false
     };
   }
 
-  // Reminder: public class fields syntax. See https://tylermcginnis.com/javascript-private-and-public-class-fields/. Fat arrow functions bind the this variable inside the function call to the this variable of the scope of where the function was defined. So in this case, this would be bound to the current class instance
+  // Reminder: public class fields syntax. See https://tylermcginnis.com/javascript-private-and-public-class-fields/
   addToInput = val => {
-    // Concatenating onto input with string value from whichever button was clicked
-    this.setState({ input: this.state.input + val });
-  };
+    this.state.evaluated ? this.handleInputAfterEvaluation(val) : this.setState({ input: this.state.input + val });
+  }
+
+  // If evaluated is set to true, the equals sign was just pressed to get a result, and this method is invoked to ensure that another button is pressed, it is not concatenated to the previous result (the way a calculator normally works). The clear button does not need to be used in that scenario, but only to clear the input mid-calculation
+  handleInputAfterEvaluation = val => {
+    this.setState({
+      input: val,
+      evaluated: false
+    });
+  }
 
   handleEqualsSign = () => {
-    this.setState({ input: math.evaluate(this.state.input) });
-  };
+    this.setState({ input: math.evaluate(this.state.input), evaluated: true });
+  }
 
   // Using this so a middle dot can be used, which is perfectly vertically aligned, unlike period
   handleDecimalPoint = () => {
     this.setState({ input: this.state.input + '.' });
-  };
+  }
 
   // Using this so a division symbol can be used
   handleDivisionSymbol = () => {
     this.setState({ input: this.state.input + '/' });
-  };
+  }
 
   // Using this so a multiplication symbol can be used
   handleMultiplicationSymbol = () => {
     this.setState({ input: this.state.input + '*' });
-  };
+  }
 
   // Using this so a minus sign can be used instead of a hyphen
   handleMinusSign = () => {
     this.setState({ input: this.state.input + '-' });
-  };
+  }
 
   render() {
     return (
