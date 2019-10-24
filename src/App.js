@@ -32,6 +32,10 @@ class App extends Component {
     this.setState({ input: math.evaluate(this.state.input), evaluated: true });
   }
 
+  handlePlusSign = () => {
+    this.setState({ input: `${this.state.input} + ` });
+  }
+
   // Using this so a middle dot can be used, which is perfectly vertically aligned, unlike period
   handleDecimalPoint = () => {
     this.setState({ input: this.state.input + '.' });
@@ -39,17 +43,17 @@ class App extends Component {
 
   // Using this so a division symbol can be used
   handleDivisionSymbol = () => {
-    this.setState({ input: this.state.input + '/' });
+    this.setState({ input: `${this.state.input} / ` });
   }
 
   // Using this so a multiplication symbol can be used
   handleMultiplicationSymbol = () => {
-    this.setState({ input: this.state.input + '*' });
+    this.setState({ input: `${this.state.input} * ` });
   }
 
   // Using this so a minus sign can be used instead of a hyphen
   handleMinusSign = () => {
-    this.setState({ input: this.state.input + '-' });
+    this.setState({ input: `${this.state.input} - ` });
   }
 
   render() {
@@ -80,7 +84,7 @@ class App extends Component {
             <Button handleClick={this.addToInput}>0</Button>
             <Button handleClick={() => this.handleDecimalPoint()}>·</Button>
             <Button handleClick={() => this.handleEqualsSign()}>=</Button>
-            <Button handleClick={this.addToInput}>+</Button>
+            <Button handleClick={() => this.handlePlusSign()}>+</Button>
           </div>
           <div className="row">
             {/* Inline functions create a new function on every render; potential performance hit */}
